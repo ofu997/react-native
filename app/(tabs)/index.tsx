@@ -14,11 +14,9 @@ import useFetch from "@/services/usefetch";
 // import { getTrendingMovies } from "@/services/appwrite";
 
 import { icons } from "@/constants/icons";
-import { images } from "@/constants/images";
 
 // import SearchBar from "@/components/SearchBar";
 // import MovieCard from "@/components/MovieCard";
-import TrendingCard from '@/components/TrendingCard';
 
 const Index = () => {
   const router = useRouter();
@@ -37,11 +35,11 @@ const Index = () => {
 
   return (
     <View className="flex-1 bg-primary">
-      <Image
-        source={images.bg}
+      {/* <Image
+        source={images.bgGradient}
         className="absolute w-full z-0"
         resizeMode="cover"
-      />
+      /> */}
 
       <ScrollView
         className="flex-1 px-5"
@@ -75,8 +73,8 @@ const Index = () => {
             <>
               <Text className='text-lg text-white'>Latest Movies</Text>
               <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
+                //horizontal
+                //showsHorizontalScrollIndicator={false}
                 className="mb-4 mt-3"
 
                 data={movies}
@@ -84,10 +82,21 @@ const Index = () => {
                   gap: 26,
                 }}
                 renderItem={({ item }) => (
-                  //left off here
+                  <>
+                  <Text className='' style={{ color: 'white' }}>Title: {item.title}</Text>
+                  <Text className='' style={{ color: 'white' }}>Score: {item.vote_average}</Text>    
+                  </>              
                 )}
-                // keyExtractor={(item) => item.movie_id.toString()}
+                keyExtractor={(item) => item.id.toString()}
+                numColumns={3}
+                columnWrapperStyle={{
+                  justifyContent: 'flex-start',
+                  gap: 20,
+                  paddingRight: 5,
+                  marginBottom: 10
+                }}
                 ItemSeparatorComponent={() => <View className="w-4" />}
+                scrollEnabled={false}
               />
             </>
           </View>)}
