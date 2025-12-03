@@ -14,9 +14,9 @@ import useFetch from "@/services/usefetch";
 // import { getTrendingMovies } from "@/services/appwrite";
 
 import { icons } from "@/constants/icons";
-
+import { images } from '@/constants/images';
 // import SearchBar from "@/components/SearchBar";
-// import MovieCard from "@/components/MovieCard";
+import MovieCard from '@/components/MovieCard';
 
 const Index = () => {
   const router = useRouter();
@@ -35,23 +35,17 @@ const Index = () => {
 
   return (
     <View className="flex-1 bg-primary">
-      {/* <Image
+      <Image
         source={images.bgGradient}
         className="absolute w-full z-0"
         resizeMode="cover"
-      /> */}
+      />
 
       <ScrollView
         className="flex-1 px-5"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ minHeight: "100%", paddingBottom: 10 }}
       >
-        <View>
-          <SearchBar
-            onPress={() => router.push("/search")}
-            placeholder='Search'
-          />
-        </View>
         <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
 
         {moviesLoading  ? (
@@ -83,8 +77,9 @@ const Index = () => {
                 }}
                 renderItem={({ item }) => (
                   <>
-                  <Text className='' style={{ color: 'white' }}>Title: {item.title}</Text>
-                  <Text className='' style={{ color: 'white' }}>Score: {item.vote_average}</Text>    
+                  <MovieCard
+                    {...item}
+                  /> 
                   </>              
                 )}
                 keyExtractor={(item) => item.id.toString()}
