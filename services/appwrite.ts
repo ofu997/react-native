@@ -11,6 +11,7 @@ const database = new Databases(client);
 
 export const updateSearchCount = async (query: string, movie: Movie) => {
   try {
+    // check if movie was searched before
     const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
       Query.equal("searchTerm", query),
     ]);
@@ -47,6 +48,7 @@ export const getTrendingMovies = async (): Promise<
   try {
     const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
       Query.limit(5),
+      // List movies with high search counts first
       Query.orderDesc("count"),
     ]);
 

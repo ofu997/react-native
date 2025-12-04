@@ -45,7 +45,7 @@ const Details = () => {
     return (
       // View is a container that supports layout with flexbox, style, some touch handling, and accessibility controls */}
       <View className="bg-primary flex-1">
-      // a generic scrolling container that can contain multiple components and views
+      {/* a generic scrolling container that can contain multiple components and views */}
       <ScrollView contentContainerStyle={{ paddingBottom: 80 }} 
         style={{ marginTop: 100, marginBottom: 100, backgroundColor:'#223355' }}
       >
@@ -58,7 +58,7 @@ const Details = () => {
             resizeMode="stretch"
           />
 
-          // On press down, the opacity of the wrapped view is decreased, dimming it.
+          {/* On press down, the opacity of the wrapped view is decreased, dimming it. */}
           <TouchableOpacity className="absolute bottom-5 right-5 rounded-full size-14 bg-white flex items-center justify-center">
             <Image
               source={icons.play}
