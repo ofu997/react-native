@@ -27,36 +27,36 @@ const Search = () => {
   };
 
   // Debounced search effect
-  // useEffect(() => {
-  //   const timeoutId = setTimeout(async () => {
-  //     if (searchQuery.trim()) {
-  //       await loadMovies();
-
-  //       // Call updateSearchCount only if there are results
-  //       if (movies?.length! > 0 && movies?.[0]) {
-  //         //await updateSearchCount(searchQuery, movies[0]);
-  //       }
-  //     } else {
-  //       reset();
-  //     }
-  //   }, 500);
-
-  //   return () => clearTimeout(timeoutId);
-  // }, [searchQuery]);
-
   useEffect(() => {
-    const func = async () => {
+    const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
-
-        // calls the refetch property of fetchMovies()
         await loadMovies_a();
+
+        // Call updateSearchCount only if there are results
+        if (movies?.length! > 0 && movies?.[0]) {
+          //await updateSearchCount(searchQuery, movies[0]);
+        }
+      } else {
+        reset();
       }
-      else {
-        reset()
-      }
-    }
-    func()
-  }, [searchQuery])
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
+  // useEffect(() => {
+  //   const func = async () => {
+  //     if (searchQuery.trim()) {
+
+  //       // calls the refetch property of fetchMovies()
+  //       await loadMovies_a();
+  //     }
+  //     else {
+  //       reset()
+  //     }
+  //   }
+  //   func()
+  // }, [searchQuery])
 
   return (
     <View className="flex-1 bg-primary">
@@ -78,6 +78,8 @@ const Search = () => {
           marginVertical: 16,
         }}
         contentContainerStyle={{ paddingBottom: 100 }}
+
+        // rendered at the top of all the items
         ListHeaderComponent={
           <>
             <View className="w-full flex-row justify-center mt-20 items-center">
@@ -117,6 +119,8 @@ const Search = () => {
               )}
           </>
         }
+
+        // shows something in search returns nothing
         ListEmptyComponent={
           !loading && !error ? (
             <View className="mt-10 px-5">
