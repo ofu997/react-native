@@ -93,6 +93,17 @@ export default function TabsLayout() {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="useMemo"
+        options={{
+          title: "useMemo",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon={icons.memo} title="useMemo" />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
