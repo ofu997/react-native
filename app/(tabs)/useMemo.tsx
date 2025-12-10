@@ -1,3 +1,4 @@
+import { buttonStyle } from '@/constants/images';
 import { useMemo, useState } from 'react';
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -16,18 +17,18 @@ const UseMemo = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const expensiveCalculation = (num: number) => {
-  console.log("Calculating from useMemo...");
-  for (let i = 0; i < 1000000000; i++) {
-    num += 1;
-  }
-  return num;
-};
+    console.log(`Calculating from useMemo...${count}`);
+    for (let i = 0; i < 1000000000; i++) {
+      num += 1;
+    }
+    return num;
+  };
 
   // without useMemo
   //const calculation = expensiveCalculation(count); 
   // Will only recompute the memoized value when one of the deps has changed
   // pass in [todo] and it will only update when a Todo is added
-  const calculation = useMemo(() => expensiveCalculation(count), [count]);
+  const calculation = useMemo(() => expensiveCalculation(count), [todos]);
   const increment = () => {
     setCount((c) => c + 1);
   };
@@ -36,10 +37,6 @@ const UseMemo = () => {
     let mytodo : Todo = { name: "New to-do", indexing: indexCount}
     setTodos((t) => [...t, mytodo]);
   };
-
-  const buttonStyle = {
-    borderWidth: 5, borderColor: "#8802c6ff", padding: 20
-  }
 
   return (
     <SafeAreaView className=" flex-1 px-10">

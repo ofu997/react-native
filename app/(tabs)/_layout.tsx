@@ -104,6 +104,17 @@ export default function TabsLayout() {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="useRef"
+        options={{
+          title: "useRef",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon={icons.memo} title="useRef" />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

@@ -7,3 +7,10 @@ export const images = {
   highlight,
   rankingGradient,
 };
+
+export const buttonStyle = {
+  borderWidth: 5, 
+  borderColor: "#8802c6ff", 
+  padding: 20,
+  width: '25vw',
+};
